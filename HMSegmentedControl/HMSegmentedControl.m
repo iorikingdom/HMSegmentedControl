@@ -487,8 +487,10 @@
                     
                     if(_boxCornerRadius == 0)
                     {
+                    	CGRect frame = self.selectionIndicatorStripLayer.frame;
                     	UIBezierPath *maskPath;
-		        maskPath = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, _boxTopOffset, frame.size.width, frame.size.height)
+		        maskPath = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0,
+		        		     _boxTopOffset, frame.size.width, frame.size.height)
                                              byRoundingCorners:(UIRectCornerTopLeft|UIRectCornerTopRight)
                                                    cornerRadii:CGSizeMake(_boxCornerRadius, _boxCornerRadius)];
             
