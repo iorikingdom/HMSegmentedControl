@@ -286,8 +286,18 @@
     
     self.selectionIndicatorStripLayer.backgroundColor = self.selectionIndicatorColor.CGColor;
     
-    self.selectionIndicatorBoxLayer.backgroundColor = self.selectionIndicatorColor.CGColor;
-    self.selectionIndicatorBoxLayer.borderColor = self.selectionIndicatorColor.CGColor;
+    if(_boxCornerRadius == 0)
+    {
+    	self.selectionIndicatorBoxLayer.backgroundColor = self.selectionIndicatorColor.CGColor;
+    	self.selectionIndicatorBoxLayer.borderColor = self.selectionIndicatorColor.CGColor;
+    }
+    else
+    {
+    	self.selectionIndicatorBoxLayer.backgroundColor = [UIColor clearColor].CGColor;
+    	self.selectionIndicatorBoxLayer.borderColor =  [UIColor clearColor].CGColor;
+    	CAShapeLayer *shapeLayer = (CAShapeLayer *)self.selectionIndicatorBoxLayer;
+    	shapeLayer.fillColor = self.selectionIndicatorColor.CGColor;
+    }
     
     // Remove all sublayers to avoid drawing images over existing ones
     self.scrollView.layer.sublayers = nil;
@@ -474,6 +484,19 @@
                 
                 if (self.selectionStyle == HMSegmentedControlSelectionStyleBox && !self.selectionIndicatorBoxLayer.superlayer) {
                     self.selectionIndicatorBoxLayer.frame = [self frameForFillerSelectionIndicator];
+                    
+                    if(_boxCornerRadius == 0)
+                    {
+                    	UIBezierPath *maskPath;
+		        maskPath = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, _boxTopOffset, frame.size.width, frame.size.height)
+                                             byRoundingCorners:(UIRectCornerTopLeft|UIRectCornerTopRight)
+                                                   cornerRadii:CGSizeMake(_boxCornerRadius, _boxCornerRadius)];
+            
+		        CAShapeLayer *maskLayer =(CAShapeLayer *) self.selectionIndicatorBoxLayer;
+        		maskLayer.path = maskPath.CGPath;
+
+                    }
+                    
                     [self.scrollView.layer insertSublayer:self.selectionIndicatorBoxLayer atIndex:0];
                 }
             }
