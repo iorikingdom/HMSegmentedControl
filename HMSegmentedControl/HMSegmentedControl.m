@@ -156,7 +156,7 @@
     self.selectionIndicatorStripLayer = [CALayer layer];
     self.selectionIndicatorBoxLayer = [CAShapeLayer layer];
 
-    
+    self.boxCornerRadius = 0;
     self.contentMode = UIViewContentModeRedraw;
 }
 
@@ -193,6 +193,7 @@
     	self.selectionIndicatorBoxOpacity = 1;
     }
     
+    _boxCornerRadius = boxCornerRadius;
     
     [self setNeedsLayout];
 }
