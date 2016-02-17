@@ -154,10 +154,8 @@
     
     self.selectionIndicatorArrowLayer = [CALayer layer];
     self.selectionIndicatorStripLayer = [CALayer layer];
-    self.selectionIndicatorBoxLayer = [CALayer layer];
-    self.selectionIndicatorBoxLayer.opacity = self.selectionIndicatorBoxOpacity;
-    self.selectionIndicatorBoxLayer.borderWidth = 1.0f;
-    self.selectionIndicatorBoxOpacity = 0.2;
+    self.selectionIndicatorBoxLayer = [CAShapeLayer layer];
+
     
     self.contentMode = UIViewContentModeRedraw;
 }
@@ -176,6 +174,25 @@
 
 - (void)setSectionTitles:(NSArray *)sectionTitles {
     _sectionTitles = sectionTitles;
+    
+    [self setNeedsLayout];
+}
+
+- (void)setBoxCornerRadius:(CGFloat)boxCornerRadius
+{
+    if(boxCornerRadius == 0)
+    {
+    	self.selectionIndicatorBoxLayer.opacity = self.selectionIndicatorBoxOpacity;
+    	self.selectionIndicatorBoxLayer.borderWidth = 1.0f;
+    	self.selectionIndicatorBoxOpacity = 0.2;
+    }
+    else
+    {
+        self.selectionIndicatorBoxLayer.opacity = 1;
+    	self.selectionIndicatorBoxLayer.borderWidth = 0.0f;
+    	self.selectionIndicatorBoxOpacity = 1;
+    }
+    
     
     [self setNeedsLayout];
 }
