@@ -485,7 +485,7 @@
                 if (self.selectionStyle == HMSegmentedControlSelectionStyleBox && !self.selectionIndicatorBoxLayer.superlayer) {
                     self.selectionIndicatorBoxLayer.frame = [self frameForFillerSelectionIndicator];
                     
-                    if(_boxCornerRadius == 0)
+                    if(_boxCornerRadius != 0)
                     {
                     	CGRect frame = self.selectionIndicatorStripLayer.frame;
                     	UIBezierPath *maskPath;
