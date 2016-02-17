@@ -165,6 +165,9 @@ typedef enum {
  */
 @property (nonatomic, assign) CGFloat borderWidth;
 
+@property (nonatomic, assign) CGFloat boxCornerRadius;
+
+@property (nonatomic, assign) CGFloat boxTopOffset;
 /**
  Default is YES. Set to NO to deny scrolling by dragging the scrollView by the user.
  */
